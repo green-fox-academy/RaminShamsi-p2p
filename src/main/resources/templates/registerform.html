@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Registeration</title>
+</head>
+<body>
+<h1>Enter</h1>
+<div th:switch="${user.username}">
+    <div th:case="null">
+        <b>The username field is empty</b>
+        <form action="/enter" method="post" th:object="${user}">
+            <!--<input type="hidden" th:value="*{id}"/>-->
+            Username: <input type="text" th:field="*{username}" placeholder="enter username"/>
+            <input type="submit" value="enter"/>
+        </form>
+    </div>
+    <div th:case="*">
+        <form action="/enter" method="post" th:object="${user}">
+            <!--<input type="hidden" th:value="*{id}"/>-->
+            Username: <input type="text" th:field="*{username}" placeholder="enter username"/>
+            <input type="submit" value="enter"/>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

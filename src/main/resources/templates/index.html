@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Home</title>
 </head>
 <body>
-<h2>Peer to Peer Chat program</h2>
-<form action="/register" method="post">
-    Your username: <input type="text"/>
+<h1>Peer to Peer Chat program</h1>
+<form action="/update" method="post">
+    Your username: <input th:type="text" th:value="${username}"/>
     <input type="submit" value="update"/>
 </form>
 <li>
