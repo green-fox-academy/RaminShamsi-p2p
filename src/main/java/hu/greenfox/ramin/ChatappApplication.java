@@ -1,6 +1,5 @@
 package hu.greenfox.ramin;
 
-import com.sun.javafx.collections.MappingChange;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
