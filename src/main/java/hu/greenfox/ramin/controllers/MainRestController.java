@@ -6,10 +6,7 @@ import hu.greenfox.ramin.models.OkRespond;
 import hu.greenfox.ramin.models.Respond;
 import hu.greenfox.ramin.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -26,6 +23,7 @@ public class MainRestController {
 
   RestTemplate restTemplate = new RestTemplate();
 
+  @CrossOrigin("*")
   @PostMapping("/api/message/receive")
   public OkRespond receive(@RequestBody MessageCenter messageCenter) {
     messageRepo.save(messageCenter.message);
