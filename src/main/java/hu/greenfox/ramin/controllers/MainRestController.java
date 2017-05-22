@@ -19,7 +19,7 @@ public class MainRestController {
   @Autowired
   OkRespond respond;
 
-  String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";
+  String url = "https://p2pchat-garlyle.herokuapp.com/api/message/receive";
 
   RestTemplate restTemplate = new RestTemplate();
 

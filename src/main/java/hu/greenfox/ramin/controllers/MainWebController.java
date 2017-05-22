@@ -1,15 +1,16 @@
 package hu.greenfox.ramin.controllers;
 
 
-import hu.greenfox.ramin.models.Message;
-import hu.greenfox.ramin.models.InfoService;
-import hu.greenfox.ramin.models.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import hu.greenfox.ramin.models.*;
 import hu.greenfox.ramin.repository.MessageRepo;
 import hu.greenfox.ramin.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -95,12 +96,25 @@ public class MainWebController {
     }
   }
 
+  String url = "https://p2pchat-garlyle.herokuapp.com/api/message/receive";
+  RestTemplate restTemplate = new RestTemplate();
+
   @PostMapping("/send")
-  public String send(String text) {
+  public String send(String text) throws JsonProcessingException {
     Message message = new Message();
     message.setText(text);
     message.setUsername(userRepo.findOne(1L).getUsername());
     messageRepo.save(message);
+
+    MessageCenter messageCenter = new MessageCenter();
+    messageCenter.client.setId("ramin");
+    //   System.out.println(messageCenter);
+    messageCenter.setMessage(message);
+    ObjectMapper mapper = new ObjectMapper();
+    String messageC = mapper.writeValueAsString(messageCenter);
+    //   System.out.println(messageC);
+    //   System.out.println(url);
+    OkRespond r = restTemplate.postForObject(url, messageCenter, OkRespond.class);
     return "redirect:/";
   }
 

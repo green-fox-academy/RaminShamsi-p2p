@@ -11,8 +11,8 @@ import static javax.xml.bind.annotation.XmlAccessType.PROPERTY;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "status")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = OkRespond.class, name = "Okk"),
-        @JsonSubTypes.Type(value = ErrorRespond.class, name = "Error")})
+        @JsonSubTypes.Type(value = OkRespond.class, name = "ok"),
+        @JsonSubTypes.Type(value = ErrorRespond.class, name = "error")})
 @Component
 public class Respond {
 

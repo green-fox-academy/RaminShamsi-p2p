@@ -11,7 +11,7 @@ public class Client {
 //
 // public String id = user.getUsername();
 //
-  public String id = "Ramin";
+  public String id;
 
  public Client(){
 
@@ -23,5 +23,12 @@ public class Client {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  @Override
+  public String toString() {
+    return "Client{" +
+            "id='" + id + '\'' +
+            '}';
   }
 }
