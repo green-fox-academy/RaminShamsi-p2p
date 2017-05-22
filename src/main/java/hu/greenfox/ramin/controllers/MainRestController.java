@@ -21,7 +21,7 @@ public class MainRestController {
   @Autowired
   OkRespond respond;
 
- // String url = "https://peertopeerchatapp.herokuapp.com/api/message/receive";
+  String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";
 
   RestTemplate restTemplate = new RestTemplate();
 
@@ -29,7 +29,7 @@ public class MainRestController {
   public Respond receive(@RequestBody MessageCenter messageCenter) {
     messageRepo.save(messageCenter.message);
     respond.setStatus("ok");
- //   restTemplate.postForObject(url, messageCenter, MessageCenter.class);
+    restTemplate.postForObject(url, messageCenter, MessageCenter.class);
     return respond;
   }
 
