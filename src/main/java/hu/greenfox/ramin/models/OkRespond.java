@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OkRespond extends Respond{
 
-  String status = "Okk";
+  String status = "ok";
 
   public OkRespond() {
   }
