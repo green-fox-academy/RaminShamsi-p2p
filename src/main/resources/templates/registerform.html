@@ -10,16 +10,14 @@
     <div th:case="null">
         <b>The username field is empty</b>
         <form action="/enter" method="post" th:object="${user}">
-            <!--<input type="hidden" th:value="*{id}"/>-->
             Username: <input type="text" th:field="*{username}" placeholder="enter username"/>
-            <input type="submit" value="enter"/>
+            <input type="submit" value="Enter"/>
         </form>
     </div>
     <div th:case="*">
         <form action="/enter" method="post" th:object="${user}">
-            <!--<input type="hidden" th:value="*{id}"/>-->
             Username: <input type="text" th:field="*{username}" placeholder="enter username"/>
-            <input type="submit" value="enter"/>
+            <input type="submit" value="Enter"/>
         </form>
     </div>
 

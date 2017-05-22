@@ -5,17 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * Created by HP on 5/18/2017.
- */
-public class Service {
 
+public class InfoService {
+
+
+  public InfoService() {
+
+  }
 
   public static String errorReport() {
     return "";
   }
 
-//   @Autowired
+  //   @Autowired
 //   User user;
   public static void infoRequest(String path, String method, User user) {
     System.out.println("###########################################################");

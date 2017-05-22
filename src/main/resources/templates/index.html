@@ -6,17 +6,34 @@
 </head>
 <body>
 <h1>Peer to Peer Chat program</h1>
-<form action="/update" method="post">
-    Your username: <input th:type="text" th:value="${username}"/>
-    <input type="submit" value="update"/>
-</form>
-<li>
+<div th:switch="${user.username}">
+    <div th:case="null">
+        <b>The username field is empty</b>
+        <form action="/update" method="post" th:object="${user}">
+            Your username: <input type="text" name="update" th:field="*{username}" placeholder="enter username"/>
+            <input type="submit" value="Update"/>
+        </form>
+    </div>
+    <div th:case="*">
+        <form action="/update" method="post" th:object="${user}">
+            Your username: <input type="text" name="update" th:field="*{username}" placeholder="enter username"/>
+            <input type="submit" value="Update"/>
+        </form>
+    </div>
+</div>
+
+<li th:feild="Here was an APP">
     App
 </li>
 <ul>Hi there! Submit your message using the send button!</ul>
-<textarea name="message" id="" cols="30" rows="5"></textarea>
+<div th:each="message : ${allMessages}">
+    <li th:text="${message.username}"></li>
+    <ul th:text="${message.text}"></ul>
+</div>
 <form action="/send" method="post">
-    <input type="submit" value="send"/>
+    <!--<input type="hidden" th:value="*{id}"/>-->
+    <textarea name="text" cols="30" rows="5" placeholder="enter the message"/>
+    <input type="submit" value="Send"/>
 </form>
 </body>
 </html>
