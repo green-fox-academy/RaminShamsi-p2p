@@ -1,0 +1,23 @@
+h1{
+    margin-bottom: 25px;
+}
+
+.form-inline{
+    margin-top: 25px;
+}
+
+.glyphicon-send{
+    margin-top: 10px;
+}
+
+.alert-success{
+    font-family: Verdana;
+    margin-bottom: 0px;
+}
+
+.sender{
+    font-style:italic;
+    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}

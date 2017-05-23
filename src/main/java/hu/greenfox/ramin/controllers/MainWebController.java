@@ -103,7 +103,11 @@ public class MainWebController {
   public String send(String text) throws JsonProcessingException {
     Message message = new Message();
     message.setText(text);
-    message.setUsername(userRepo.findOne(1L).getUsername());
+    if (userRepo.findOne(1L).getUsername() != null) {
+      message.setUsername(userRepo.findOne(1L).getUsername());
+    } else {
+      message.setUsername("GOD :)");
+    }
     messageRepo.save(message);
 
     MessageCenter messageCenter = new MessageCenter();

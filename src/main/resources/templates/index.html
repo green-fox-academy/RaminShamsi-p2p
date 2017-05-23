@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/styling.css"/>
     <title>Home</title>
 </head>
 <body>
@@ -14,7 +15,7 @@
 
         <div th:switch="${user.username}">
             <div th:case="null">
-                <b>The username field is empty</b>
+                <b class="alert alert-danger">The username field is empty!</b>
                 <form class="form-inline" action="/update" method="post" th:object="${user}">
                     Your username:<input class="form-control" id="username" type="text" name="update"
                                          th:field="*{username}"
@@ -37,14 +38,20 @@
         </li>
         <ul>Hi there! Submit your message using the send button!</ul>
         <div th:each="message : ${allMessages}">
-            <li th:text="${message.username}"></li>
-            <ul th:text="${message.text}"></ul>
+            <div class="alert alert-success" th:text="${message.text}"></div>
+            <div th:if="${message.username} == null">
+                <div class="sender" th:text="'sent by: ' + 'God :)'"></div>
+            </div>
+            <div th:if="${message.username}!= null">
+                <div class="sender" th:text="'sent by: ' + ${message.username}"></div>
+            </div>
+
         </div>
         <form action="/send" method="post">
             <textarea class="form-control" name="text" cols="50" rows="4" placeholder="enter the message"/>
             <div></div>
             <div>
-                <input class="btn btn-success" type="submit" value="Send"/>
+                <input class="btn btn-success glyphicon-send" type="submit" value="Send"/>
             </div>
         </form>
 
