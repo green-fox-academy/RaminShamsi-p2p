@@ -2,25 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
     <title>Registeration</title>
 </head>
 <body>
-<h1>Enter</h1>
-<div th:switch="${user.username}">
-    <div th:case="null">
-        <b>The username field is empty</b>
-        <form action="/enter" method="post" th:object="${user}">
-            Username: <input type="text" th:field="*{username}" placeholder="enter username"/>
-            <input type="submit" value="Enter"/>
-        </form>
-    </div>
-    <div th:case="*">
-        <form action="/enter" method="post" th:object="${user}">
-            Username: <input type="text" th:field="*{username}" placeholder="enter username"/>
-            <input type="submit" value="Enter"/>
-        </form>
-    </div>
+<div class="col-md-1"></div>
+<div class="col-md-10">
+    <h1>Enter</h1>
+    <div th:switch="${user.username}">
+        <div th:case="null">
+            <b>The username field is empty</b>
+            <form class="form-inline" action="/enter" method="post" th:object="${user}">
+                Username: <input class="form-control" type="text" th:field="*{username}" placeholder="enter username"/>
+                <input class="btn btn-success" type="submit" value="Enter"/>
+            </form>
+        </div>
+        <div th:case="*">
+            <form class="form-inline" action="/enter" method="post" th:object="${user}">
+                Username: <input class="form-control" type="text" th:field="*{username}" placeholder="enter username"/>
+                <input class="btn btn-success" type="submit" value="Enter"/>
+            </form>
+        </div>
 
+    </div>
 </div>
+<div class="col-md-1"></div>
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </body>
 </html>

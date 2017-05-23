@@ -96,7 +96,7 @@ public class MainWebController {
     }
   }
 
-  String url = "https://p2pchat-garlyle.herokuapp.com/api/message/receive";
+  String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping("/send")

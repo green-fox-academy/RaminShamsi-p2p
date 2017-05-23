@@ -2,38 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
     <title>Home</title>
 </head>
 <body>
-<h1>Peer to Peer Chat program</h1>
-<div th:switch="${user.username}">
-    <div th:case="null">
-        <b>The username field is empty</b>
-        <form action="/update" method="post" th:object="${user}">
-            Your username: <input type="text" name="update" th:field="*{username}" placeholder="enter username"/>
-            <input type="submit" value="Update"/>
-        </form>
-    </div>
-    <div th:case="*">
-        <form action="/update" method="post" th:object="${user}">
-            Your username: <input type="text" name="update" th:field="*{username}" placeholder="enter username"/>
-            <input type="submit" value="Update"/>
-        </form>
-    </div>
-</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
 
-<li th:feild="Here was an APP">
-    App
-</li>
-<ul>Hi there! Submit your message using the send button!</ul>
-<div th:each="message : ${allMessages}">
-    <li th:text="${message.username}"></li>
-    <ul th:text="${message.text}"></ul>
+        <h1>Peer to Peer Chat program</h1>
+
+        <div th:switch="${user.username}">
+            <div th:case="null">
+                <b>The username field is empty</b>
+                <form class="form-inline" action="/update" method="post" th:object="${user}">
+                    Your username:<input class="form-control" id="username" type="text" name="update"
+                                         th:field="*{username}"
+                                         placeholder="enter username"/>
+                    <input class="btn btn-warning" type="submit" value="Update"/>
+                </form>
+            </div>
+            <div th:case="*">
+                <form class="form-inline" action="/update" method="post" th:object="${user}">
+                    Your username: <input class="form-control" type="text" name="update"
+                                          th:field="*{username}"
+                                          placeholder="enter username"/>
+                    <input class="btn btn-warning" type="submit" value="Update"/>
+                </form>
+            </div>
+        </div>
+
+        <li th:feild="Here was an APP">
+            App
+        </li>
+        <ul>Hi there! Submit your message using the send button!</ul>
+        <div th:each="message : ${allMessages}">
+            <li th:text="${message.username}"></li>
+            <ul th:text="${message.text}"></ul>
+        </div>
+        <form action="/send" method="post">
+            <textarea class="form-control" name="text" cols="50" rows="4" placeholder="enter the message"/>
+            <div></div>
+            <div>
+                <input class="btn btn-success" type="submit" value="Send"/>
+            </div>
+        </form>
+
+    </div>
 </div>
-<form action="/send" method="post">
-    <!--<input type="hidden" th:value="*{id}"/>-->
-    <textarea name="text" cols="30" rows="5" placeholder="enter the message"/>
-    <input type="submit" value="Send"/>
-</form>
+<div class="col-md-6"></div>
+<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
 </body>
 </html>
