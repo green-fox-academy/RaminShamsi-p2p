@@ -10,7 +10,8 @@ public class ErrorRespond extends Respond {
   String message;
 
   public ErrorRespond() {
-
+    this.status = "error";
+    this.message = "Missing field(s): message.timestamp, client.id";
   }
 
   public String getStatus() {

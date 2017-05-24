@@ -95,10 +95,12 @@ public class MainWebController {
       return "redirect:/";
     }
   }
-//  CHAT_APP_PEER_ADDRESSS=https://greenfox-chat-app.herokuapp.com/api/message/receive
 
+//  CHAT_APP_PEER_ADDRESSS=https://greenfox-chat-app.herokuapp.com/api/message/receive
 //  String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";
+
   String url = System.getenv("CHAT_APP_PEER_ADDRESSS");
+  String clientId = System.getenv("CHAT_APP_UNIQUE_ID");
   RestTemplate restTemplate = new RestTemplate();
 
   @PostMapping("/send")
@@ -113,14 +115,15 @@ public class MainWebController {
     messageRepo.save(message);
 
     MessageCenter messageCenter = new MessageCenter();
-    messageCenter.client.setId("ramin");
-    System.out.println(System.getenv("CHAT_APP_PEER_ADDRESSS"));
+    messageCenter.client.setId(clientId);
+    System.out.println(System.getenv("CHAT_APP_UNIQUE_ID"));
     messageCenter.setMessage(message);
     ObjectMapper mapper = new ObjectMapper();
     String messageC = mapper.writeValueAsString(messageCenter);
     //   System.out.println(messageC);
     //   System.out.println(url);
-    OkRespond r = restTemplate.postForObject(url, messageCenter, OkRespond.class);
+    Respond r = restTemplate.postForObject(url, messageCenter, Respond.class);
+
     return "redirect:/";
   }
 
