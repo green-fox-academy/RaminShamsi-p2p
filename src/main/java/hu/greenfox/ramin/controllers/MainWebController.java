@@ -70,8 +70,10 @@ public class MainWebController {
     User newUser = userRepo.findOne(1L);
     if (updatedUser.getUsername().isEmpty()) {
       newUser.setUsername(null);
+      InfoService.infoRequest("/update","post",updatedUser);
     } else {
       newUser.setUsername(updatedUser.getUsername());
+      InfoService.infoRequest("/update","post",newUser);
     }
     userRepo.save(newUser);
     return "redirect:/";
@@ -113,10 +115,11 @@ public class MainWebController {
       message.setUsername("GOD :)");
     }
     messageRepo.save(message);
+    InfoService.infoRequest("/send", "post",userRepo.findOne(1L));
 
     MessageCenter messageCenter = new MessageCenter();
     messageCenter.client.setId(clientId);
-    System.out.println(System.getenv("CHAT_APP_UNIQUE_ID"));
+ //   System.out.println(System.getenv("CHAT_APP_UNIQUE_ID"));
     messageCenter.setMessage(message);
     ObjectMapper mapper = new ObjectMapper();
     String messageC = mapper.writeValueAsString(messageCenter);
