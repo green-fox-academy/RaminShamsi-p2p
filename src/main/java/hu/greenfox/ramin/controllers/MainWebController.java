@@ -50,7 +50,7 @@ public class MainWebController {
       return "registerform";
     } else {
       model.addAttribute("user", userRepo.findOne(1L));
-      model.addAttribute("allMessages", messageRepo.findAll());
+      model.addAttribute("allMessages", messageRepo.findAllByOrderByTimestampDesc());
       //     model.addAttribute("user", new User());
       return "index";
     }

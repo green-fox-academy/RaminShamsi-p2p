@@ -40,10 +40,11 @@
         <div th:each="message : ${allMessages}">
             <div class="alert alert-success" th:text="${message.text}"></div>
             <div th:if="${message.username} == null">
-                <div class="sender" th:text="'sent by: ' + 'God :)'"></div>
+                <div class="sender" th:text="'sent by: ' + 'God :)'"></div> <!--This line dosent work, since username is not
+                                                      null, but set to God:) at webcontroller(/enter endpoint) -->
             </div>
             <div th:if="${message.username}!= null">
-                <div class="sender" th:text="'sent by: ' + ${message.username}"></div>
+                <div class="sender" th:text="'sent by: ' + ${message.username} + ' at: ' + ${message.timestamp}"></div>
             </div>
 
         </div>

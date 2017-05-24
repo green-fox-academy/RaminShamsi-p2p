@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 @SpringBootApplication
-@ComponentScan
+//@ComponentScan
 public class ChatappApplication {
 
 	public static void main(String[] args) {
