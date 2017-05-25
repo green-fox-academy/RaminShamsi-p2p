@@ -33,7 +33,7 @@
       </div>
       <div th:case="*">
         <div class="panel panel-warning error">
-          <div class="panel-heading"><b> User</b></div>
+          <div class="panel-heading"><b th:text="'Hello ' + ${user.username} +'!'"></b></div>
           <div class="panel-body">
             <form class="form-inline" action="/update" method="post" th:object="${user}">
               Your username: <input class="form-control" type="text" name="update"
