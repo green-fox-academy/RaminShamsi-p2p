@@ -22,7 +22,7 @@ public class MainRestController {
 
   @Autowired
   OkRespond respond;
- // String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";   //Ramin
+  // String url = "https://greenfox-chat-app.herokuapp.com/api/message/receive";   //Ramin
   // String url = "https://peertopeerchatapp.herokuapp.com/api/message/receive";  //George
   // String url = "https://reka-greenfox-p2pchatapp.herokuapp.com/api/message/receive";  ///Réka
 
@@ -34,12 +34,11 @@ public class MainRestController {
   @PostMapping("/api/message/receive")
   public ResponseEntity receive(@RequestBody MessageCenter messageCenter) {
     if (messageCenter.message.getUsername() == null ||
-            messageCenter.message.getText() == null ||
-            messageCenter.client.getId() == null) {
+        messageCenter.message.getText() == null ||
+        messageCenter.client.getId() == null) {
       return new ResponseEntity<Respond>(new ErrorRespond(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
     } else if (!messageCenter.client.getId().equals(clientId)) {
       messageRepo.save(messageCenter.message);
-      //    respond.setStatus("ok");
       Respond r = restTemplate.postForObject(url, messageCenter, Respond.class);
       return new ResponseEntity<Respond>(r, new HttpHeaders(), HttpStatus.OK);
     } else {

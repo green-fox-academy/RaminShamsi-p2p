@@ -1,62 +1,74 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/styling.css"/>
-    <title>Home</title>
+  <meta charset="UTF-8"/>
+  <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/styling.css"/>
+  <title>Home</title>
 </head>
 <body>
 <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-5">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
 
-        <h1>Peer to Peer Chat program</h1>
+    <h1>Peer to Peer Chat program</h1>
 
-        <div th:switch="${user.username}">
-            <div th:case="null">
-                <b class="alert alert-danger">The username field is empty!</b>
-                <form class="form-inline" action="/update" method="post" th:object="${user}">
-                    Your username:<input class="form-control" id="username" type="text" name="update"
-                                         th:field="*{username}"
-                                         placeholder="enter username"/>
-                    <input class="btn btn-warning" type="submit" value="Update"/>
-                </form>
-            </div>
-            <div th:case="*">
-                <form class="form-inline" action="/update" method="post" th:object="${user}">
-                    Your username: <input class="form-control" type="text" name="update"
-                                          th:field="*{username}"
-                                          placeholder="enter username"/>
-                    <input class="btn btn-warning" type="submit" value="Update"/>
-                </form>
-            </div>
+    <div th:switch="${user.username}">
+      <div th:case="null">
+        <b class="alert alert-danger">The username field is empty!</b>
+
+        <div class="panel panel-warning error">
+          <div class="panel-heading"><b> User</b></div>
+          <div class="panel-body">
+            <form class="form-inline" action="/update" method="post" th:object="${user}">
+              Your username:<input class="form-control" id="username" type="text" name="update"
+                                   th:field="*{username}"
+                                   placeholder="enter username"/>
+              <input class="btn btn-warning" type="submit" value="Update"/>
+            </form>
+          </div>
         </div>
 
-        <li th:feild="Here was an APP">
-            App
-        </li>
-        <ul>Hi there! Submit your message using the send button!</ul>
-        <div th:each="message : ${allMessages}">
-            <div class="alert alert-success" th:text="${message.text}"></div>
-            <div th:if="${message.username} == null">
-                <div class="sender" th:text="'sent by: ' + 'God :)'"></div> <!--This line dosent work, since username is not
+      </div>
+      <div th:case="*">
+        <div class="panel panel-warning error">
+          <div class="panel-heading"><b> User</b></div>
+          <div class="panel-body">
+            <form class="form-inline" action="/update" method="post" th:object="${user}">
+              Your username: <input class="form-control" type="text" name="update"
+                                    th:field="*{username}"
+                                    placeholder="enter username"/>
+              <input class="btn btn-warning" type="submit" value="Update"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <li th:feild="Here was an APP">
+      App
+    </li>
+    <ul>Hi there! Submit your message using the send button!</ul>
+    <div th:each="message : ${allMessages}">
+      <div class="alert alert-success" th:text="${message.text}"></div>
+      <div th:if="${message.username} == null">
+        <div class="sender" th:text="'sent by: ' + 'God :)'"></div> <!--This line dosent work, since username is not
                                                       null, but set to God:) at webcontroller(/enter endpoint) -->
-            </div>
-            <div th:if="${message.username}!= null">
-                <div class="sender" th:text="'sent by: ' + ${message.username} + ' at: ' + ${message.timestamp}"></div>
-            </div>
-
-        </div>
-        <form action="/send" method="post">
-            <textarea class="form-control" name="text" cols="50" rows="4" placeholder="enter the message"/>
-            <div></div>
-            <div>
-                <input class="btn btn-success glyphicon-send" type="submit" value="Send"/>
-            </div>
-        </form>
+      </div>
+      <div th:if="${message.username}!= null">
+        <div class="sender" th:text="'sent by: ' + ${message.username} + ' at: ' + ${message.timestamp}"></div>
+      </div>
 
     </div>
+    <form action="/send" method="post">
+      <textarea class="form-control" name="text" cols="50" rows="4" placeholder="enter the message"/>
+      <div></div>
+      <div>
+        <input class="btn btn-success glyphicon-send" type="submit" value="Send"/>
+      </div>
+    </form>
+
+  </div>
 </div>
 <div class="col-md-6"></div>
 <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
