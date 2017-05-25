@@ -30,6 +30,11 @@ public class Message {
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
+  public Message(String username, String text) {
+    this.username = username;
+    this.text = text;
+  }
+
   public Long getId() {
     return id;
   }
