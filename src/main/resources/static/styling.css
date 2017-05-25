@@ -7,7 +7,17 @@ h1{
 }
 
 .glyphicon-send{
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.glyphicon-refresh {
+    margin-left: 10px;
+    margin-top: 5px;
+    vertical-align: top;
+}
+.sendrefresh{
+    display: inline;
 }
 
 .alert-success{

@@ -45,10 +45,23 @@
       </div>
     </div>
 
-    <li th:feild="Here was an APP">
-      App
-    </li>
-    <ul>Hi there! Submit your message using the send button!</ul>
+    <!--<li th:feild="Here was an APP">-->
+    <!--App-->
+    <!--</li>-->
+    <!--<ul>Hi there! Submit your message using the send button!</ul>-->
+
+    <form action="/send" method="post">
+      <textarea class="form-control" name="text" cols="50" rows="4" placeholder="enter the message"/>
+      <div class="sendrefresh">
+
+        <input class="btn btn-success glyphicon-send" type="submit" value="Send"/>
+
+        <a class="btn btn-default glyphicon glyphicon-refresh" href="/"></a>
+
+      </div>
+    </form>
+
+
     <div th:each="message : ${allMessages}">
       <div class="alert alert-success" th:text="${message.text}"></div>
       <div th:if="${message.username} == null">
@@ -58,15 +71,8 @@
       <div th:if="${message.username}!= null">
         <div class="sender" th:text="'sent by: ' + ${message.username} + ' at: ' + ${message.timestamp}"></div>
       </div>
-
     </div>
-    <form action="/send" method="post">
-      <textarea class="form-control" name="text" cols="50" rows="4" placeholder="enter the message"/>
-      <div></div>
-      <div>
-        <input class="btn btn-success glyphicon-send" type="submit" value="Send"/>
-      </div>
-    </form>
+
 
   </div>
 </div>
